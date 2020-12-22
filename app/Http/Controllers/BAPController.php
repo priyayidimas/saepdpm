@@ -10,6 +10,9 @@ use App\Model\Kegiatan;
 use App\Model\Nilai;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use PDO;
+use Barryvdh\DomPDF\Facade as PDF;
+
 
 class BAPController extends Controller
 {
@@ -79,7 +82,7 @@ class BAPController extends Controller
             if($oldttd){
                 Storage::delete('public/ttd_pengawas/'.$oldttd);
             }
-            $kegiatan->pengawas_ttd = url('storage/'.$path);
+            $kegiatan->pengawas_ttd = 'storage/'.$path;
         } else {
             throw new \Exception('did not match data URI with image data');
         }
@@ -104,7 +107,7 @@ class BAPController extends Controller
 
         $kegiatan = Kegiatan::find($request->kegiatan_id);
 
-        $oldttd = str_replace(url('')."/storage/ttd_pengawas/",'',$kegiatan->pengawas_ttd);
+        $oldttd = str_replace("storage/ttd_pengawas/",'',$kegiatan->pengawas_ttd);
 
         $kegiatan->pengawas_nama = $request->pengawas_nama;
         $kegiatan->pengawas_nim = $request->pengawas_nim;
@@ -134,7 +137,7 @@ class BAPController extends Controller
             if($oldttd != NULL){
                 Storage::disk('public')->delete('ttd_pengawas/'.$oldttd);
             }
-            $kegiatan->pengawas_ttd = url('storage/'.$path);
+            $kegiatan->pengawas_ttd = 'storage/'.$path;
         } else {
             throw new \Exception('did not match data URI with image data');
         }
@@ -143,5 +146,11 @@ class BAPController extends Controller
         return redirect(route('kegiatan'))->with(['color' => 'success', 'msg' => 'Berhasil Menilai Proker']);
     }
 
+    public function printBAP($id){
+        $kegiatan = Kegiatan::find($id);
+
+        $pdf = PDF::loadView('bap.print',compact('kegiatan'));
+        return $pdf->download('theFile.pdf');
+    }
 
 }

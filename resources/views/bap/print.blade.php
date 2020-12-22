@@ -1,5 +1,4 @@
 @php
-    $kegiatan = App\Model\Kegiatan::find(4);
     $f_section = DB::table('form_section')->get();
     $alphabet = range('A','Z');
 @endphp

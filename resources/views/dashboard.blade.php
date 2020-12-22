@@ -30,7 +30,7 @@
                             <td>{{$proker->nama}}</td>
                             <td>{{$proker->tanggal }}</td>
                             <td>{{$proker->keterangan }}</td>
-                            <td style="white-space: pre"><a class="text-success" href="{{route('bapProker',$proker->id)}}"><i class="fas fa-check-square"></i></a></td>
+                            <td style="white-space: pre"><a class="text-success" href="{{route('bapProker',$proker->id)}}"><i class="fas fa-check-square"></i></a>    <a class="text-info" href="{{route('printBAP',$proker->id)}}"><i class="fas fa-print"></i></a></td>
                         </tr>
                         @empty
                         <tr>

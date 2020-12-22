@@ -44,6 +44,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('kegiatan', 'KegiatanController@updateKegiatan')->name('updateKegiatan');
         Route::delete('kegiatan', 'KegiatanController@deleteKegiatan')->name('deleteKegiatan');
 
+        Route::get('printBAP/{id}', 'BAPController@printBAP')->name('printBAP');
+
     });
 });
 
