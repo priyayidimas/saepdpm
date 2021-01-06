@@ -150,7 +150,7 @@ class BAPController extends Controller
         $kegiatan = Kegiatan::find($id);
 
         $pdf = PDF::loadView('bap.print',compact('kegiatan'));
-        return $pdf->download('theFile.pdf');
+        return $pdf->download('BAP '.$kegiatan->nama.'.pdf');
     }
 
 }
