@@ -158,7 +158,7 @@
                 <td style="width:30%"></td>
                 <td style="width:40%">
                     <img src="assets/img/cap.png" alt="" style="height:120px; z-index:20; position:absolute">
-                    <img class="foto-ttd ttd-container" src="assets/img/ttd-hilmi.png" alt="" style="position:relative;">
+                    <img class="foto-ttd ttd-container" src="{{ url($ketua['ttd']) }}" alt="" style="position:relative;">
                 </td>
                 <td style="width:30%">
                     <img class="foto-ttd" src="{{$kegiatan->pengawas_ttd}}" alt="">
@@ -167,7 +167,7 @@
             <tr>
                 <td style="width:30%"></td>
                 <td style="width:40%" class="ttd-container">
-                    <b>Hilmi Adlannaafi</b>
+                    <b>{{$ketua['nama']}}</b>
                 </td>
                 <td style="width:30%">
                     <b>{!! $kegiatan->pengawas_nama !!}</b>
@@ -176,7 +176,7 @@
             <tr>
                 <td style="width:30%"></td>
                 <td style="width:40%" class="ttd-container">
-                    <b>NIM. 1705007</b>
+                    <b>NIM. {{ $ketua['nim'] }}</b>
                 </td>
                 <td style="width:30%">
                     <b>NIM. {!! $kegiatan->pengawas_nim !!}</b>

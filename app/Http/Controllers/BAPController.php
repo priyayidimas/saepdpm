@@ -148,8 +148,13 @@ class BAPController extends Controller
 
     public function printBAP($id){
         $kegiatan = Kegiatan::find($id);
+        $ketua = [
+            "nim" => DB::table('config')->where('id','ketua_nim')->first()->value,
+            "nama" => DB::table('config')->where('id','ketua_nama')->first()->value,
+            "ttd" => DB::table('config')->where('id','ketua_ttd')->first()->value
+        ];
 
-        $pdf = PDF::loadView('bap.print',compact('kegiatan'));
+        $pdf = PDF::loadView('bap.print',compact('kegiatan','ketua'));
         return $pdf->download('BAP '.$kegiatan->nama.'.pdf');
     }
 
